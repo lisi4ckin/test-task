@@ -3,6 +3,7 @@ package com.example.entities;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.text.ChoiceFormat;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,4 +25,23 @@ public class Buyers extends PanacheEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn
     public Set<Filters> buyerFilters = new HashSet<>();
+
+
+    @Transactional
+    public void addBuyer(Buyers buyer){
+        buyer.persist();
+    }
+
+    @Transactional
+    public void deleteBuyer(Long buyerId){
+        Buyers buyer = Buyers.findById(buyerId);
+        buyer.delete();
+    }
+
+    @Transactional
+    public void updateBuyer(Long buyerId){
+        Buyers buyer = Buyers.findById(buyerId);
+        buyer.persist();
+    }
+
 }
