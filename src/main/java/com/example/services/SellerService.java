@@ -30,4 +30,7 @@ public class SellerService {
         Sellers.updateSeller(mapperDto.SellersDtoToSellers(sellersDto));
     }
 
+    public SellersDto getOne(Long id){
+        return mapperDto.SellersToSellersDto(Sellers.findById(id));
+    }
 }

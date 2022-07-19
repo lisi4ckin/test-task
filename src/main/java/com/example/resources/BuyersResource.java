@@ -41,4 +41,10 @@ public class BuyersResource {
         buyerService.updateBuyer(buyersDto);
         return Response.ok().build();
     }
+
+    @GET
+    @Path("{id}")
+    public Response getOne(@PathParam("id") Long id){
+        return Response.ok(buyerService.getOne(id)).build();
+    }
 }

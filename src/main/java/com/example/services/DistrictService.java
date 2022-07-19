@@ -32,4 +32,8 @@ public class DistrictService {
     public void updateDistrict(DistrictsDto districtsDto){
         Districts.updateDistrict(mapperDto.DistrictsDtoToDistricts(districtsDto));
     }
+
+    public DistrictsDto getOne(Long id){
+        return mapperDto.DistrictsToDistrictsDto(Districts.findById(id));
+    }
 }

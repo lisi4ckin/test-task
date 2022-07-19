@@ -43,4 +43,10 @@ public class SellersResource {
         sellerService.deleteSeller(id);
         return Response.ok().build();
     }
+
+    @GET
+    @Path("{id}")
+    public Response getOne(@PathParam("id") Long id){
+        return Response.ok(sellerService.getOne(id)).build();
+    }
 }

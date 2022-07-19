@@ -13,8 +13,8 @@ public class BuyersDistrictsDto {
     public Long id;
 
     @NotNull
-    public Buyers buyer;
+    public Long buyerId;
 
     @NotNull
-    public Districts district;
+    public Long districtId;
 }

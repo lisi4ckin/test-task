@@ -42,4 +42,10 @@ public class BuyerDistrictsResource {
         return Response.ok(buyersDistrictsService.getBuyersDistricts()).build();
     }
 
+    @GET
+    @Path("{id}")
+    public Response getOne(@PathParam("id") Long id){
+        return Response.ok(buyersDistrictsService.getOne(id)).build();
+    }
+
 }

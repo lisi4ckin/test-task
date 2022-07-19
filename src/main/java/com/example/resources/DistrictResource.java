@@ -44,4 +44,10 @@ public class DistrictResource {
         districtService.updateDistrict(districtsDto);
         return Response.ok().build();
     }
+
+    @GET
+    @Path("{id}")
+    public Response getOne(@PathParam("id") Long id){
+        return Response.ok(districtService.getOne(id)).build();
+    }
 }

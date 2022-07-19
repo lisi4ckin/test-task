@@ -25,7 +25,11 @@ public class BuyersDistrictsService {
         BuyersDistricts.updateBuyersDistrict(mapperDto.BuyersDistrictsDtoToBuyersDistricts(buyersDistrictsDto));
     }
 
-    public List<BuyersDistricts> getBuyersDistricts(){
-        return BuyersDistricts.getBuyersDistricts();
+    public List<BuyersDistrictsDto> getBuyersDistricts(){
+        return mapperDto.BuyersDistrictsListToBuyersDistrictsDtoList(BuyersDistricts.getBuyersDistricts());
+    }
+
+    public BuyersDistrictsDto getOne(Long id){
+        return mapperDto.BuyersDistrictsToBuyersDistrictsDto(BuyersDistricts.findById(id));
     }
 }

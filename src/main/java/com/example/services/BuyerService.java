@@ -28,4 +28,8 @@ public class BuyerService {
     public void updateBuyer(BuyersDto buyerDto){
         Buyers.updateBuyer(mapperDto.BuyersDtoToBuyers(buyerDto));
     }
+
+    public BuyersDto getOne(Long id){
+        return mapperDto.BuyersToBuyersDto(Buyers.findById(id));
+    }
 }
