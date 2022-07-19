@@ -20,8 +20,10 @@ public class BuyerDistrictsResource {
 
     @POST
     public Response addBuyerDistrict(@Valid @ConvertGroup(to = ValidationGroups.Post.class) BuyersDistrictsDto buyersDistricts){
-        buyersDistrictsService.addBuyersDistricts(buyersDistricts);
+        if(!buyersDistrictsService.addBuyersDistricts(buyersDistricts))
+            return Response.status(422).build();
         return Response.ok().build();
+
     }
 
     @PUT

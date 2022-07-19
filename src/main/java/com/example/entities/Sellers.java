@@ -15,7 +15,7 @@ public class Sellers extends PanacheEntity {
     public String sellerName;
     public String phone;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn
     public Districts sellerDistrict;
 
@@ -37,8 +37,9 @@ public class Sellers extends PanacheEntity {
 
     @Transactional
     public static void deleteSeller(Long sellerId){
-        Sellers seller = Sellers.findById(sellerId);
-        seller.delete();
+//        Sellers seller = Sellers.findById(sellerId);
+//        seller.delete();
+        Sellers.deleteById(sellerId);
     }
 
     @Transactional

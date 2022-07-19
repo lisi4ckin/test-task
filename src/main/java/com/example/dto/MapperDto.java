@@ -26,6 +26,10 @@ public interface MapperDto {
     DistrictsDto DistrictsToDistrictsDto(Districts districts);
 
 
+    @Mappings({
+            @Mapping(source = "buyerId", target = "buyer.id"),
+            @Mapping(source = "districtId", target = "district.id"),
+    })
     BuyersDistricts BuyersDistrictsDtoToBuyersDistricts(BuyersDistrictsDto buyersDistrictsDto);
 
 

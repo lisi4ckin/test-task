@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import javax.inject.Inject;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.List;
