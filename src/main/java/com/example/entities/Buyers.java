@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,8 +14,7 @@ public class Buyers extends PanacheEntity {
     public String buyerPhone;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn
-    public Set<Districts> buyerDistricts = new HashSet<>();
+    public List<Districts> buyerDistricts;
 
     public Float houseAreaGTE;
     public Float houseAreaLTE;
@@ -26,6 +26,7 @@ public class Buyers extends PanacheEntity {
 
     @Transactional
     public static void addBuyer(Buyers buyer){
+        buyer.buyerDistricts.replaceAll(districts -> Districts.findById(districts.id));
         buyer.persist();
     }
 
