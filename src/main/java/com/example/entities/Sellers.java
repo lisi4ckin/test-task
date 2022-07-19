@@ -30,6 +30,7 @@ public class Sellers extends PanacheEntity {
 
     @Transactional
     public static void addSeller(Sellers seller){
+        seller.sellerDistrict = Districts.findById(seller.sellerDistrict.id);
         seller.persist();
     }
 
