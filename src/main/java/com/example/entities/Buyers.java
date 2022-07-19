@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.text.ChoiceFormat;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,7 +25,7 @@ public class Buyers extends PanacheEntity {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn
-    public Set<Filters> buyerFilters = new HashSet<>();
+    public List<Filters> buyerFilters;
 
 
     @Transactional
