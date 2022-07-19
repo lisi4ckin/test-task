@@ -5,18 +5,15 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.function.UnaryOperator;
 
 @Entity
 public class Buyers extends PanacheEntity {
     public String buyerName;
     public String buyerPhone;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    public List<Districts> buyerDistricts;
+    @OneToMany(mappedBy = "buyer")
+    public List<BuyersDistricts> buyerDistricts;
 
     public Float houseAreaGTE;
     public Float houseAreaLTE;
@@ -28,7 +25,7 @@ public class Buyers extends PanacheEntity {
 
     @Transactional
     public static void addBuyer(Buyers buyer){
-        buyer.buyerDistricts.replaceAll(districts -> Districts.findById(districts.id));
+//        buyer.buyerDistricts.replaceAll(districts -> Districts.findById(districts.id));
         buyer.persist();
     }
 
@@ -52,11 +49,15 @@ public class Buyers extends PanacheEntity {
         in.houseAreaGTE = out.houseAreaGTE;
         in.houseAreaLTE = out.houseAreaLTE;
         in.maxPrice = out.maxPrice;
-        if((out.buyerDistricts != null)&&(out.buyerDistricts.size() > 0)) {
-            List<Districts> districtsList = new ArrayList<>();
-            for (Districts district : out.buyerDistricts)
-                districtsList.add(Districts.findById(district.id));
+        /*if((out.buyerDistricts != null)&&(out.buyerDistricts.size() > 0)) {
+            List<BuyersDistricts> districtsList = new ArrayList<>();
+            for (BuyersDistricts buyersDistricts : out.buyerDistricts) {
+                BuyersDistricts buydis = BuyersDistricts.findById(buyersDistricts.id);
+                buydis.district = Districts.findById(buy)
+//                districtsList.add(Districts.findById(buyersDistricts.district.id));
+
+            }
             in.buyerDistricts = districtsList;
-        }
+        }*/
     }
 }

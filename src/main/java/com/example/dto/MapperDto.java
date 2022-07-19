@@ -1,10 +1,12 @@
 package com.example.dto;
 
 import com.example.entities.Buyers;
+import com.example.entities.BuyersDistricts;
 import com.example.entities.Districts;
 import com.example.entities.Sellers;
 import org.mapstruct.Mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = "cdi")
@@ -17,4 +19,8 @@ public interface MapperDto {
 
     Districts DistrictsDtoToDistricts(DistrictsDto districtsDto);
     List<DistrictsDto> DistrictListToDistrictDtoList(List<Districts> districtsLists);
+
+    BuyersDistricts BuyersDistrictsDtoToBuyersDistricts(BuyersDistrictsDto buyersDistrictsDto);
+
+    List<BuyersDistrictsDto> BuyersDistrictsListToBuyersDistrictsDtoList(List<BuyersDistricts> buyersDistrictsList);
 }

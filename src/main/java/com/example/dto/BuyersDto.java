@@ -1,5 +1,6 @@
 package com.example.dto;
 
+import com.example.entities.BuyersDistricts;
 import com.example.entities.Districts;
 
 import javax.validation.constraints.Min;
@@ -18,8 +19,8 @@ public class BuyersDto {
     @NotBlank
     public String buyerPhone;
 
-    @NotNull(groups = ValidationGroups.Post.class)
-    public List<Districts> buyerDistricts;
+    @Null
+    public List<BuyersDistricts> buyerDistricts;
 
     @NotNull
     @Min(1)
