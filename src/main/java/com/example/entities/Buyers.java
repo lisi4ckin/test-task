@@ -4,7 +4,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.text.ChoiceFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,20 +27,29 @@ public class Buyers extends PanacheEntity {
 
 
     @Transactional
-    public void addBuyer(Buyers buyer){
+    public static void addBuyer(Buyers buyer){
         buyer.persist();
     }
 
     @Transactional
-    public void deleteBuyer(Long buyerId){
-        Buyers buyer = Buyers.findById(buyerId);
-        buyer.delete();
+    public static void deleteBuyer(Long buyerId){
+        Buyers.deleteById(buyerId);
     }
 
     @Transactional
-    public void updateBuyer(Long buyerId){
-        Buyers buyer = Buyers.findById(buyerId);
-        buyer.persist();
+    public static void updateBuyer(Buyers buyer){
+        Buyers buyerToUpdate = Buyers.findById(buyer.id);
+        setFields(buyerToUpdate, buyer);
+        buyerToUpdate.persist();
     }
 
+    private static void setFields(Buyers in, Buyers out){
+        in.buyerDistricts = out.buyerDistricts;
+        in.buyerFilters = out.buyerFilters;
+        in.buyerName = out.buyerName;
+        in.buyerPhone = out.buyerPhone;
+        in.houseAreaGTE = out.houseAreaGTE;
+        in.houseAreaLTE = out.houseAreaLTE;
+        in.maxPrice = out.maxPrice;
+    }
 }
