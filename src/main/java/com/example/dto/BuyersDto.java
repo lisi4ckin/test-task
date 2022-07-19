@@ -33,6 +33,7 @@ public class BuyersDto {
     @Min(0)
     public Float maxPrice;
 
-    public Filters buyerFilters;
+    @NotNull
+    public Integer buyerFilters;
 }
 

@@ -21,9 +21,7 @@ public class Buyers extends PanacheEntity {
 
     public Float maxPrice;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn
-    public Set<Filters> buyerFilters = new HashSet<>();
+    public Integer buyerFilters;
 
 
     @Transactional
