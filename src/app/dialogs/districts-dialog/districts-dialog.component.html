@@ -1,0 +1,21 @@
+<div *ngIf="pageForm">
+  <form [formGroup]="pageForm" novalidate>
+
+    <div>
+      <label>Название района</label>
+      <br>
+      <input type="text" formControlName="districtName"/>
+    </div>
+    <br>
+    <div>
+      <label>Описание</label>
+      <br>
+      <input type="text" formControlName="description"/>
+    </div>
+
+    <br>
+    <input type="button" value="Сохранить район" (click)="save()">
+    <br>
+    <input type="button" value="Назад" (click)="back()">
+  </form>
+</div>
