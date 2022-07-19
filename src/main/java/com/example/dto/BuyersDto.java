@@ -6,33 +6,34 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.util.List;
 
-public class SellersDto {
+public class BuyersDto {
     @Null(groups = ValidationGroups.Post.class)
     @NotNull(groups = ValidationGroups.Put.class)
     public Long id;
 
     @NotBlank
-    public String sellerName;
+    public String buyerName;
     @NotBlank
-    public String phone;
+    public String buyerPhone;
 
     @NotNull(groups = ValidationGroups.Post.class)
-    public Districts sellerDistrict;
+    public List<Districts> buyerDistricts;
 
     @NotNull
     @Min(1)
-    public Integer countFloors;
+    public Float houseAreaGTE;
 
     @NotNull
     @Min(1)
-    public Integer floorNumber;
-
-    @NotNull
-    @Min(1)
-    public Float houseArea;
+    public Float houseAreaLTE;
 
     @NotNull
     @Min(0)
-    public Float housePrice;
+    public Float maxPrice;
+
+    @NotNull
+    public Integer buyerFilters;
 }
+
