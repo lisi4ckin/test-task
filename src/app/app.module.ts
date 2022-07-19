@@ -12,13 +12,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import { SalesDialogComponent } from './dialogs/sales-dialog/sales-dialog.component';
-import { BuyerDialogComponent } from './dialogs/buyer-dialog/buyer-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuyerDialogComponent,
   ],
   imports: [
     BrowserModule,
