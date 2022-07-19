@@ -1,10 +1,9 @@
 package com.example.resources;
 
-import com.example.dto.SellersDto;
+import com.example.dto.SellersRequestDto;
 import com.example.dto.ValidationGroups;
 import com.example.services.SellerService;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
@@ -26,13 +25,13 @@ public class SellersResource {
     }
 
     @POST
-    public Response addSeller(@Valid @ConvertGroup(to = ValidationGroups.Post.class) SellersDto seller){
+    public Response addSeller(@Valid @ConvertGroup(to = ValidationGroups.Post.class) SellersRequestDto seller){
         sellerService.addSeller(seller);
         return Response.ok().build();
     }
 
     @PUT
-    public Response updateSeller(@Valid @ConvertGroup(to = ValidationGroups.Put.class) SellersDto sellersDto){
+    public Response updateSeller(@Valid @ConvertGroup(to = ValidationGroups.Put.class) SellersRequestDto sellersDto){
         sellerService.updateSellers(sellersDto);
         return Response.ok().build();
     }

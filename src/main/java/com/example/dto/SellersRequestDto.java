@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
-public class SellersDto {
+public class SellersRequestDto {
     @Null(groups = ValidationGroups.Post.class)
     @NotNull(groups = ValidationGroups.Put.class)
     public Long id;
@@ -18,7 +18,7 @@ public class SellersDto {
     public String phone;
 
     @NotNull(groups = ValidationGroups.Post.class)
-    public Districts sellerDistrict;
+    public Long districtId;
 
     @NotNull
     @Min(1)

@@ -1,14 +1,10 @@
 package com.example.entities;
 
-import com.example.dto.SellersDto;
-import com.example.services.SellerService;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Sellers extends PanacheEntity {

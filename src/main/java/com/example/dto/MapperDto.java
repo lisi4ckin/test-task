@@ -8,14 +8,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = "cdi")
 public interface MapperDto {
-    Sellers SellersDtoToSellers(SellersDto sellersDto);
-    List<SellersDto> SellersListToSellersDtoList(List<Sellers> sellersList);
-    SellersDto SellersToSellersDto(Sellers sellers);
+    @Mapping(source = "districtId", target = "sellerDistrict.id")
+    Sellers SellersDtoToSellers(SellersRequestDto sellersDto);
+    List<SellersResponseDto> SellersListToSellersDtoList(List<Sellers> sellersList);
+    SellersResponseDto SellersToSellersDto(Sellers sellers);
 
     Buyers BuyersDtoToBuyers(BuyersDto buyersDto);
     List<BuyersDto> BuyersListToBuyersDtoList(List<Buyers> buyersList);

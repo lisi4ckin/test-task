@@ -1,11 +1,11 @@
 package com.example.services;
 import com.example.dto.MapperDto;
-import com.example.dto.SellersDto;
+import com.example.dto.SellersRequestDto;
+import com.example.dto.SellersResponseDto;
 import com.example.entities.Sellers;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 @ApplicationScoped
@@ -14,11 +14,11 @@ public class SellerService {
     @Inject
     MapperDto mapperDto;
 
-    public List<SellersDto> getAllSellers(){
+    public List<SellersResponseDto> getAllSellers(){
         return mapperDto.SellersListToSellersDtoList(Sellers.getAllSellers());
     }
 
-    public void addSeller(SellersDto seller){
+    public void addSeller(SellersRequestDto seller){
         Sellers.addSeller(mapperDto.SellersDtoToSellers(seller));
     }
 
@@ -26,11 +26,11 @@ public class SellerService {
         Sellers.deleteSeller(id);
     }
 
-    public void updateSellers(SellersDto sellersDto){
+    public void updateSellers(SellersRequestDto sellersDto){
         Sellers.updateSeller(mapperDto.SellersDtoToSellers(sellersDto));
     }
 
-    public SellersDto getOne(Long id){
+    public SellersResponseDto getOne(Long id){
         return mapperDto.SellersToSellersDto(Sellers.findById(id));
     }
 }
