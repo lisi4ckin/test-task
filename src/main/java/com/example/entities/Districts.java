@@ -26,9 +26,15 @@ public class Districts extends PanacheEntity {
     }
 
     @Transactional
-    public static void updateDistrict(Long districtId){
-        Districts district = Districts.findById(districtId);
-        district.persist();
+    public static void updateDistrict(Districts district){
+        Districts districtToUpdate = Districts.findById(district.id);
+        setFields(districtToUpdate, district);
+        districtToUpdate.persist();
+    }
+
+    private static void setFields(Districts in, Districts out){
+        in.description = out.description;
+        in.districtName = out.districtName;
     }
 
 }

@@ -16,8 +16,8 @@ public class DistrictService {
     @Inject
     MapperDto mapperDto;
 
-    public Response getDistricts(){
-        return Response.ok(mapperDto.DistrictListToDistrictDtoList(Districts.getAllDistricts())).build();
+    public void getDistricts(){
+        mapperDto.DistrictListToDistrictDtoList(Districts.getAllDistricts());
     }
 
     public void addDistrict(DistrictsDto districtsDto){
@@ -28,7 +28,7 @@ public class DistrictService {
         Districts.deleteById(distictId);
     }
 
-    public void updateDistrict(Long districtId){
-        Districts.updateDistrict(districtId);
+    public void updateDistrict(DistrictsDto districtsDto){
+        Districts.updateDistrict(mapperDto.DistrictsDtoToDistricts(districtsDto));
     }
 }

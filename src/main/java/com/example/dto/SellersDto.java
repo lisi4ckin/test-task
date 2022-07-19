@@ -17,6 +17,7 @@ public class SellersDto {
     @NotBlank
     public String phone;
 
+    @NotNull(groups = ValidationGroups.Post.class)
     public Districts sellerDistrict;
 
     @NotNull

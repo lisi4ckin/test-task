@@ -6,7 +6,6 @@ import com.example.entities.Sellers;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 @ApplicationScoped
 public class SellerService {
@@ -14,12 +13,20 @@ public class SellerService {
     @Inject
     MapperDto mapperDto;
 
-    public Response getAllSellers(){
-        return Response.ok(mapperDto.SellersListToSellersDtoList(Sellers.getAllSellers())).build();
+    public void getAllSellers(){
+        mapperDto.SellersListToSellersDtoList(Sellers.getAllSellers());
     }
 
-    public Response addSeller(SellersDto seller){
+    public void addSeller(SellersDto seller){
         Sellers.addSeller(mapperDto.SellersDtoToSellers(seller));
-        return Response.ok().build();
     }
+
+    public void deleteSeller(Long id){
+        Sellers.deleteSeller(id);
+    }
+
+    public void updateSellers(SellersDto sellersDto){
+        Sellers.updateSeller(mapperDto.SellersDtoToSellers(sellersDto));
+    }
+
 }
