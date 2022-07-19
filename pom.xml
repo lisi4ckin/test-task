@@ -54,6 +54,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>1.5.2.Final</version>
+    </dependency>
+    <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
@@ -83,6 +88,15 @@
           <compilerArgs>
             <arg>-parameters</arg>
           </compilerArgs>
+          <!--          MapStruct Annotation-->
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>1.5.2.Final</version>
+            </path>
+          </annotationProcessorPaths>
+          <!--          -->
         </configuration>
       </plugin>
       <plugin>
