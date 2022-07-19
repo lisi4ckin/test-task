@@ -1,7 +1,6 @@
 package com.example.dto;
 
 import com.example.entities.Districts;
-import com.example.entities.Filters;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -19,6 +18,7 @@ public class BuyersDto {
     @NotBlank
     public String buyerPhone;
 
+    @NotNull
     public List<Districts> buyerDistricts;
 
     @NotNull

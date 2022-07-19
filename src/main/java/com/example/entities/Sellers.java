@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import com.example.dto.SellersDto;
 import com.example.services.SellerService;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -41,8 +42,20 @@ public class Sellers extends PanacheEntity {
     }
 
     @Transactional
-    public static void updateSeller(Long sellerId){
-        Sellers seller = Sellers.findById(sellerId);
-        seller.persist();
+    public static void updateSeller(Sellers seller){
+        Sellers sellertoUpdate = Sellers.findById(seller.id);
+        setFields(sellertoUpdate, seller);
+        sellertoUpdate.persist();
+    }
+
+    private static void setFields(Sellers in, Sellers out){
+        in.sellerName = out.sellerName;
+        in.countFloors = out.countFloors;
+        in.floorNumber = out.floorNumber;
+        in.houseArea = out.houseArea;
+        in.housePrice = out.housePrice;
+        in.phone = out.phone;
+        if(in.sellerDistrict != null)
+            out.sellerDistrict = Districts.findById(in.sellerDistrict);
     }
 }

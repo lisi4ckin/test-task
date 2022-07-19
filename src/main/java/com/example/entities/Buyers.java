@@ -13,7 +13,6 @@ public class Buyers extends PanacheEntity {
     public String buyerPhone;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn
     public Set<Districts> buyerDistricts = new HashSet<>();
 
     public Float houseAreaGTE;

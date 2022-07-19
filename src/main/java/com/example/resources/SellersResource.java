@@ -5,6 +5,7 @@ import com.example.services.SellerService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,13 +20,27 @@ public class SellersResource {
 
     @GET
     public Response getSellers(){
-        return sellerService.getAllSellers();
+        sellerService.getAllSellers();
+        return Response.ok().build();
     }
 
     @POST
     @Path("/AddSeller")
-    public Response addSeller(SellersDto seller){
-        return sellerService.addSeller(seller);
+    public Response addSeller(@Valid SellersDto seller){
+        sellerService.addSeller(seller);
+        return Response.ok().build();
     }
 
+    @PUT
+    public Response updateSeller(@Valid SellersDto sellersDto){
+        sellerService.updateSellers(sellersDto);
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response deleteSeller(@PathParam("id")Long id){
+        sellerService.deleteSeller(id);
+        return Response.ok().build();
+    }
 }
