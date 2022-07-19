@@ -8,6 +8,7 @@ import com.example.entities.Districts;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.Map;
 
 @ApplicationScoped
@@ -16,8 +17,8 @@ public class DistrictService {
     @Inject
     MapperDto mapperDto;
 
-    public void getDistricts(){
-        mapperDto.DistrictListToDistrictDtoList(Districts.getAllDistricts());
+    public List<DistrictsDto> getDistricts(){
+        return mapperDto.DistrictListToDistrictDtoList(Districts.getAllDistricts());
     }
 
     public void addDistrict(DistrictsDto districtsDto){
@@ -25,7 +26,7 @@ public class DistrictService {
     }
 
     public void deleteDistrict(Long distictId){
-        Districts.deleteById(distictId);
+        Districts.deleteDistrict(distictId);
     }
 
     public void updateDistrict(DistrictsDto districtsDto){

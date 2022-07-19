@@ -56,6 +56,6 @@ public class Sellers extends PanacheEntity {
         in.housePrice = out.housePrice;
         in.phone = out.phone;
         if(in.sellerDistrict != null)
-            out.sellerDistrict = Districts.findById(in.sellerDistrict);
+            in.sellerDistrict = Districts.findById(out.sellerDistrict.id);
     }
 }

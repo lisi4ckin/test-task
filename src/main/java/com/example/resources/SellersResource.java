@@ -1,11 +1,13 @@
 package com.example.resources;
 
 import com.example.dto.SellersDto;
+import com.example.dto.ValidationGroups;
 import com.example.services.SellerService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.validation.groups.ConvertGroup;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -20,19 +22,17 @@ public class SellersResource {
 
     @GET
     public Response getSellers(){
-        sellerService.getAllSellers();
-        return Response.ok().build();
+        return Response.ok(sellerService.getAllSellers()).build();
     }
 
     @POST
-    @Path("/AddSeller")
-    public Response addSeller(@Valid SellersDto seller){
+    public Response addSeller(@Valid @ConvertGroup(to = ValidationGroups.Post.class) SellersDto seller){
         sellerService.addSeller(seller);
         return Response.ok().build();
     }
 
     @PUT
-    public Response updateSeller(@Valid SellersDto sellersDto){
+    public Response updateSeller(@Valid @ConvertGroup(to = ValidationGroups.Put.class) SellersDto sellersDto){
         sellerService.updateSellers(sellersDto);
         return Response.ok().build();
     }

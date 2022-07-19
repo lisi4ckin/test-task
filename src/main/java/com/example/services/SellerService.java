@@ -6,6 +6,7 @@ import com.example.entities.Sellers;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @ApplicationScoped
 public class SellerService {
@@ -13,8 +14,8 @@ public class SellerService {
     @Inject
     MapperDto mapperDto;
 
-    public void getAllSellers(){
-        mapperDto.SellersListToSellersDtoList(Sellers.getAllSellers());
+    public List<SellersDto> getAllSellers(){
+        return mapperDto.SellersListToSellersDtoList(Sellers.getAllSellers());
     }
 
     public void addSeller(SellersDto seller){

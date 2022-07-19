@@ -21,8 +21,7 @@ public class Districts extends PanacheEntity {
 
     @Transactional
     public static void deleteDistrict(Long districtId){
-        Districts district = Districts.findById(districtId);
-        district.delete();
+        Districts.deleteById(districtId);
     }
 
     @Transactional

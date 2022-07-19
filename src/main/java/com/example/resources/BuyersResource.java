@@ -1,10 +1,12 @@
 package com.example.resources;
 
 import com.example.dto.BuyersDto;
+import com.example.dto.ValidationGroups;
 import com.example.services.BuyerService;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.validation.groups.ConvertGroup;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,7 +19,7 @@ public class BuyersResource {
     BuyerService buyerService;
 
     @POST
-    public Response addBuyer(@Valid BuyersDto buyersDto){
+    public Response addBuyer(@Valid @ConvertGroup(to = ValidationGroups.Post.class) BuyersDto buyersDto){
         buyerService.addBuyer(buyersDto);
         return Response.ok().build();
     }
@@ -35,7 +37,7 @@ public class BuyersResource {
     }
 
     @PUT
-    public Response updateBuyer(@Valid BuyersDto buyersDto){
+    public Response updateBuyer(@Valid @ConvertGroup(to = ValidationGroups.Put.class) BuyersDto buyersDto){
         buyerService.updateBuyer(buyersDto);
         return Response.ok().build();
     }
