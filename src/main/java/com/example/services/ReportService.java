@@ -1,6 +1,5 @@
 package com.example.services;
 
-import com.example.dto.FileUploadForm;
 import com.example.dto.ReportDto;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -56,7 +55,7 @@ public class ReportService {
         return reportDto;
     }
 
-    public FileOutputStream getXlsFile(List<ReportDto> reportObjects) throws IOException {
+    public void getXlsFile(List<ReportDto> reportObjects) throws IOException {
         Workbook reportWorkbook = new XSSFWorkbook();
         Sheet sheet = reportWorkbook.createSheet("report");
         Row headers = sheet.createRow(0);
@@ -94,7 +93,5 @@ public class ReportService {
 
         FileOutputStream outputStream = new FileOutputStream(fileLocation);
         reportWorkbook.write(outputStream);
-        return outputStream;
     }
-
 }
