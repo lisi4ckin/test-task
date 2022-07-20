@@ -1,11 +1,20 @@
 package com.example.services;
 
 import com.example.dto.ReportDto;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,5 +53,45 @@ public class ReportService {
         reportDto.buyerPhone = (String) objarr[2];
         reportDto.income = (Float) objarr[3];
         return reportDto;
+    }
+
+    public void getXlsFile(List<ReportDto> reportObjects) throws IOException {
+        Workbook reportWorkbook = new XSSFWorkbook();
+        Sheet sheet = reportWorkbook.createSheet("report");
+        Row headers = sheet.createRow(0);
+        Cell headerCell = headers.createCell(0);
+        headerCell.setCellValue("District");
+
+        headerCell = headers.createCell(1);
+        headerCell.setCellValue("Phone seller");
+
+
+        headerCell = headers.createCell(2);
+        headerCell.setCellValue("Phone buyer");
+
+
+        headerCell = headers.createCell(3);
+        headerCell.setCellValue("Incoming");
+
+        for (int i = 1; i < reportObjects.size() + 1; i++){
+            Row dataRow = sheet.createRow(i);
+            Cell dataCell = dataRow.createCell(0);
+            dataCell.setCellValue(reportObjects.get(i - 1).district);
+
+            dataCell = dataRow.createCell(1);
+            dataCell.setCellValue(reportObjects.get(i - 1).sellerPhone);
+
+            dataCell = dataRow.createCell(2);
+            dataCell.setCellValue(reportObjects.get(i - 1).buyerPhone);
+
+            dataCell = dataRow.createCell(3);
+            dataCell.setCellValue(reportObjects.get(i - 1).income);
+        }
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath();
+        String fileLocation = path.substring(0, path.length() - 1) + "temp.xlsx";
+
+        FileOutputStream outputStream = new FileOutputStream(fileLocation);
+        reportWorkbook.write(outputStream);
     }
 }
