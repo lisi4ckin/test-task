@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReportService} from "./report.service";
 import {Report} from "../../entities/report";
+import {DomSanitizer} from "@angular/platform-browser";
+import * as FileSaver from "file-saver";
 
 @Component({
   selector: 'app-report',
@@ -10,10 +12,10 @@ import {Report} from "../../entities/report";
 })
 export class ReportComponent implements OnInit {
 
-  dataSource: Report[] = []
+  dataSource: Report[] = [];
   dataColumns: string[] = [];
 
-  constructor(private service: ReportService, private router: Router) {
+  constructor(private service: ReportService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -30,10 +32,8 @@ export class ReportComponent implements OnInit {
 
   download() {
     this.service.downloadReport().subscribe(data => {
-      console.log("download report", data)
-      let blob = new Blob([data], { type: 'text/csv' });
-      let url= window.URL.createObjectURL(blob);
-      window.open(url);
+      let blob = new Blob([data], { type: 'text/xlsx' });
+      FileSaver.saveAs(blob, "temp.xlsx");
     })
   }
 }

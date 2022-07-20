@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Report} from "../../entities/report";
 
@@ -8,13 +8,21 @@ import {Report} from "../../entities/report";
 })
 export class ReportService {
 
-  constructor(private http: HttpClient) { }
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Accept': 'application/xlsx, */*',
+    }),
+    'responseType': 'blob' as 'json'
+  };
 
-  getData(): Observable<Report[]>{
+  constructor(private http: HttpClient) {
+  }
+
+  getData(): Observable<Report[]> {
     return this.http.get<Report[]>("/api/report")
   }
 
-  downloadReport(): Observable<any>{
-    return this.http.get<any>("/api/download")
+  downloadReport(): Observable<any> {
+    return this.http.post<any>("/api/report/download", {}, this.httpOptions)
   }
 }

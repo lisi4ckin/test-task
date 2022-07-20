@@ -25,12 +25,6 @@
     </div>
     <br>
     <div>
-      <label>Желаемый этаж</label>
-      <br>
-      <input type="number" formControlName="buyerFilters" placeholder="9"/>
-    </div>
-    <br>
-    <div>
       <label>Площадь от, м. кв.</label>
       <br>
       <input type="number" formControlName="houseAreaGTE" placeholder="5"/>
@@ -48,11 +42,23 @@
       <input type="number" formControlName="maxPrice" placeholder="1000000"/>
     </div>
     <br>
-    <button (click)="back()">
-      <mat-icon title="назад">backspace</mat-icon>
-    </button>
-    <button (click)="save()">
-      <mat-icon title="сохранить">save</mat-icon>
-    </button>
+    <div>
+      <label>Спец. условие</label>
+      <br>
+      <mat-form-field appearance="fill">
+        <select matNativeControl [(ngModel)]="filters" #filter>
+          <option *ngFor="let filter of filters" [value]="filter.id">
+            {{filter.title}}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+    <br>
   </form>
 </div>
+<button (click)="back()">
+  <mat-icon title="назад">backspace</mat-icon>
+</button>
+<button (click)="save()">
+  <mat-icon title="сохранить">save</mat-icon>
+</button>

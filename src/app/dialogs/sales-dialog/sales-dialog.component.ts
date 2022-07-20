@@ -53,6 +53,7 @@ export class SalesDialogComponent implements OnInit {
         })
       })
     }
+    this.districtsName?.nativeElement.setValue(this.pageForm.get("districtId")?.value)
     this.serviceDistrict.getData().subscribe(data => {
       this.districts = data
       console.log("getData districts in sales", data)

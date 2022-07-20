@@ -2,7 +2,7 @@
   <mat-icon title="продавцы" routerLink="/sales">account_box</mat-icon>
   <mat-icon title="покупатели" routerLink="/buyer">accessibility</mat-icon>
   <mat-icon title="район" routerLink="/district">	location_city</mat-icon>
-  <mat-icon title="отчёт" routerLink="/buyer">insert_drive_file</mat-icon>
+  <mat-icon title="отчёт" routerLink="/report">insert_drive_file</mat-icon>
 </div>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -19,27 +19,27 @@
 
   <ng-container matColumnDef="buyerDistricts">
     <th mat-header-cell *matHeaderCellDef>Район</th>
-    <td mat-cell *matCellDef="let element">{{element.buyerDistricts.districtName}}</td>
+    <td mat-cell *matCellDef="let element">{{element.buyerDistricts[0].district.districtName}}</td>
   </ng-container>
 
   <ng-container matColumnDef="houseAreaGTE">
-    <th mat-header-cell *matHeaderCellDef>Всего этажей</th>
+    <th mat-header-cell *matHeaderCellDef>Площадь от, м. кв</th>
     <td mat-cell *matCellDef="let element">{{element.houseAreaGTE}}</td>
   </ng-container>
 
   <ng-container matColumnDef="houseAreaLTE">
-    <th mat-header-cell *matHeaderCellDef>Номер этажа</th>
+    <th mat-header-cell *matHeaderCellDef>Площадь до, м. кв</th>
     <td mat-cell *matCellDef="let element">{{element.houseAreaLTE}}</td>
   </ng-container>
 
   <ng-container matColumnDef="maxPrice">
-    <th mat-header-cell *matHeaderCellDef>Площадь, м. кв.</th>
+    <th mat-header-cell *matHeaderCellDef>Максимально допустимая цена, руб.</th>
     <td mat-cell *matCellDef="let element">{{element.maxPrice}}</td>
   </ng-container>
 
   <ng-container matColumnDef="buyerFilters">
-    <th mat-header-cell *matHeaderCellDef>Цена, руб.</th>
-    <td mat-cell *matCellDef="let element">{{element.buyerFilters}}</td>
+    <th mat-header-cell *matHeaderCellDef>Спец. условие</th>
+    <td mat-cell *matCellDef="let element">{{element.buyerFilters ? "первый и последний этаж не предлагать" : "любой этаж"}}</td>
   </ng-container>
 
   <ng-container matColumnDef="change">

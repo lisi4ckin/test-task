@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/sales",
+    redirectTo: "/report",
     pathMatch: "full"
   },
   {
@@ -20,24 +20,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/districts/districts.module').then(m => m.DistrictsModule)
   },
   {
+    path: "report",
+    loadChildren: () => import('./pages/report/report.module').then(m => m.ReportModule),
+  },
+  {
     path: "districtsDialog/:id",
     loadChildren: () => import('./dialogs/districts-dialog/districts-dialog.module').then(m => m.DistrictsDialogModule)
   },
   {
     path: "salesDialog/:id",
     loadChildren: () => import('./dialogs/sales-dialog/sales-dialog.module').then(m => m.SalesDialogModule),
-    data: []
   },
   {
     path: "buyerDialog/:id",
     loadChildren: () => import('./dialogs/buyer-dialog/buyer-dialog.module').then(m => m.BuyerDialogModule),
-    data: []
-  },
-  {
-    path: "report",
-    loadChildren: () => import('./pages/report/report.module').then(m => m.ReportModule),
-    data: []
-  },
+  }
 ];
 
 @NgModule({
