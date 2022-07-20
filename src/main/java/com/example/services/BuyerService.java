@@ -1,8 +1,11 @@
 package com.example.services;
 
-import com.example.dto.BuyersDto;
+import com.example.dto.BuyersDistrictsDto;
+import com.example.dto.BuyersRequestDto;
+import com.example.dto.BuyersResponseDto;
 import com.example.dto.MapperDto;
 import com.example.entities.Buyers;
+import com.example.entities.BuyersDistricts;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,23 +16,34 @@ public class BuyerService {
     @Inject
     MapperDto mapperDto;
 
-    public void addBuyer(BuyersDto buyerDto){
-        Buyers.addBuyer(mapperDto.BuyersDtoToBuyers(buyerDto));
+    @Inject
+    BuyersDistrictsService buyersDistrictsService;
+
+    public void addBuyer(BuyersRequestDto buyerDto){
+        Long buyerId = Buyers.addBuyer(mapperDto.BuyersRequestDtoToBuyers(buyerDto));
+        if(buyerDto.buyerDistrictsId == null)
+            return;
+        for(Long id : buyerDto.buyerDistrictsId){
+            BuyersDistrictsDto buyersDistrictsDto = new BuyersDistrictsDto();
+            buyersDistrictsDto.buyerId = buyerId;
+            buyersDistrictsDto.districtId = id;
+            buyersDistrictsService.addBuyersDistricts(buyersDistrictsDto);
+        }
     }
 
     public void deleteBuyer(Long id){
         Buyers.deleteBuyer(id);
     }
 
-    public List<BuyersDto> getBuyersList(){
+    public List<BuyersResponseDto> getBuyersList(){
         return mapperDto.BuyersListToBuyersDtoList(Buyers.listAll());
     }
 
-    public void updateBuyer(BuyersDto buyerDto){
-        Buyers.updateBuyer(mapperDto.BuyersDtoToBuyers(buyerDto));
+    public void updateBuyer(BuyersRequestDto buyerDto){
+        Buyers.updateBuyer(mapperDto.BuyersRequestDtoToBuyers(buyerDto));
     }
 
-    public BuyersDto getOne(Long id){
-        return mapperDto.BuyersToBuyersDto(Buyers.findById(id));
+    public BuyersResponseDto getOne(Long id){
+        return mapperDto.BuyersToBuyersResponseDto(Buyers.findById(id));
     }
 }

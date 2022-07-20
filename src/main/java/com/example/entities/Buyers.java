@@ -12,7 +12,7 @@ public class Buyers extends PanacheEntity {
     public String buyerName;
     public String buyerPhone;
 
-    @OneToMany(mappedBy = "buyer")
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
     public List<BuyersDistricts> buyerDistricts;
 
     public Float houseAreaGTE;
@@ -24,9 +24,10 @@ public class Buyers extends PanacheEntity {
 
 
     @Transactional
-    public static void addBuyer(Buyers buyer){
+    public static Long addBuyer(Buyers buyer){
 //        buyer.buyerDistricts.replaceAll(districts -> Districts.findById(districts.id));
         buyer.persist();
+        return buyer.id;
     }
 
     @Transactional

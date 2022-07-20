@@ -1,6 +1,6 @@
 package com.example.resources;
 
-import com.example.dto.BuyersDto;
+import com.example.dto.BuyersRequestDto;
 import com.example.dto.ValidationGroups;
 import com.example.services.BuyerService;
 
@@ -19,7 +19,7 @@ public class BuyersResource {
     BuyerService buyerService;
 
     @POST
-    public Response addBuyer(@Valid @ConvertGroup(to = ValidationGroups.Post.class) BuyersDto buyersDto){
+    public Response addBuyer(@Valid @ConvertGroup(to = ValidationGroups.Post.class) BuyersRequestDto buyersDto){
         buyerService.addBuyer(buyersDto);
         return Response.ok().build();
     }
@@ -37,7 +37,7 @@ public class BuyersResource {
     }
 
     @PUT
-    public Response updateBuyer(@Valid @ConvertGroup(to = ValidationGroups.Put.class) BuyersDto buyersDto){
+    public Response updateBuyer(@Valid @ConvertGroup(to = ValidationGroups.Put.class) BuyersRequestDto buyersDto){
         buyerService.updateBuyer(buyersDto);
         return Response.ok().build();
     }

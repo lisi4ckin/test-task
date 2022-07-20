@@ -19,13 +19,13 @@ public class ReportService {
         Query queryAllFloors = em.createQuery("SELECT d.districtName as district, s.phone as sellerphone, b.buyerPhone as " +
                 "buyerphone, (b.maxPrice - s.housePrice) AS income FROM Sellers s, Buyers b, BuyersDistricts bd, " +
                 "Districts d WHERE b.buyerFilters = 0 AND b.id = bd.buyer.id AND d.id = bd.district.id AND s.sellerDistrict.id = d.id AND " +
-                "b.houseAreaLTE <= s.houseArea AND b.houseAreaGTE >= s.houseArea AND b.maxPrice > s.housePrice ORDER BY " +
+                "b.houseAreaLTE >= s.houseArea AND b.houseAreaGTE <= s.houseArea AND b.maxPrice > s.housePrice ORDER BY " +
                 "income DESC");
         // Не первый и не последний этаж
         Query queryNoLastAndFirstFloor = em.createQuery("SELECT d.districtName as district, s.phone as sellerphone, b.buyerPhone as " +
                 "buyerphone, (b.maxPrice - s.housePrice) AS income FROM Sellers s, Buyers b, BuyersDistricts bd, " +
                 "Districts d WHERE b.buyerFilters = 1 AND b.id = bd.buyer.id AND d.id = bd.district.id AND s.sellerDistrict.id = d.id AND " +
-                "b.houseAreaLTE <= s.houseArea AND b.houseAreaGTE >= s.houseArea AND b.maxPrice > s.housePrice AND s.floorNumber != 1 " +
+                "b.houseAreaLTE >= s.houseArea AND b.houseAreaGTE <= s.houseArea AND b.maxPrice > s.housePrice AND s.floorNumber != 1 " +
                 "AND s.floorNumber < s.countFloors ORDER BY income DESC");
         List<Object[]> queryAllFloorsResult = queryAllFloors.getResultList();
         List<Object[]> queryNoLastAndFirstFloorResult = queryNoLastAndFirstFloor.getResultList();

@@ -1,7 +1,6 @@
 package com.example.dto;
 
 import com.example.entities.BuyersDistricts;
-import com.example.entities.Districts;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -9,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.util.List;
 
-public class BuyersDto {
+public class BuyersRequestDto {
     @Null(groups = ValidationGroups.Post.class)
     @NotNull(groups = ValidationGroups.Put.class)
     public Long id;
@@ -19,8 +18,8 @@ public class BuyersDto {
     @NotBlank
     public String buyerPhone;
 
-    @Null
-    public List<BuyersDistricts> buyerDistricts;
+    @NotNull
+    public List<Long> buyerDistrictsId;
 
     @NotNull
     @Min(1)
@@ -37,4 +36,3 @@ public class BuyersDto {
     @NotNull
     public Integer buyerFilters;
 }
-
