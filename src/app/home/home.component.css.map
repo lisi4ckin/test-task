@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,SAAS;EACP,OAAO,EAAE,IAAI",
-"sources": ["home.component.sass"],
-"names": [],
-"file": "home.component.css"
-}
