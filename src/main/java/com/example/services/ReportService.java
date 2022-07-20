@@ -60,18 +60,18 @@ public class ReportService {
         Sheet sheet = reportWorkbook.createSheet("report");
         Row headers = sheet.createRow(0);
         Cell headerCell = headers.createCell(0);
-        headerCell.setCellValue("District");
+        headerCell.setCellValue("Район");
 
         headerCell = headers.createCell(1);
-        headerCell.setCellValue("Phone seller");
+        headerCell.setCellValue("Телефон продовца");
 
 
         headerCell = headers.createCell(2);
-        headerCell.setCellValue("Phone buyer");
+        headerCell.setCellValue("Телефон покупателя");
 
 
         headerCell = headers.createCell(3);
-        headerCell.setCellValue("Incoming");
+        headerCell.setCellValue("Прибыль");
 
         for (int i = 1; i < reportObjects.size() + 1; i++){
             Row dataRow = sheet.createRow(i);
