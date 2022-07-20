@@ -27,6 +27,7 @@ export class DistrictsDialogComponent implements OnInit {
     this.option = Number(this.router.url.split('/').reverse()[0])
     if (this.option) {
       this.service.getOne(this.option).subscribe(data => {
+        console.log("getOne districts", data)
         this.pageForm = this.fb.group({
           id: [data.id],
           districtName: [data.districtName],

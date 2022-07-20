@@ -4,12 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/home",
+    redirectTo: "/sales",
     pathMatch: "full"
-  },
-  {
-    path: "home",
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
     path: "sales",
@@ -35,6 +31,11 @@ const routes: Routes = [
   {
     path: "buyerDialog/:id",
     loadChildren: () => import('./dialogs/buyer-dialog/buyer-dialog.module').then(m => m.BuyerDialogModule),
+    data: []
+  },
+  {
+    path: "report",
+    loadChildren: () => import('./pages/report/report.module').then(m => m.ReportModule),
     data: []
   },
 ];

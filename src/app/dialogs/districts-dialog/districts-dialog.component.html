@@ -12,10 +12,11 @@
       <br>
       <input type="text" formControlName="description"/>
     </div>
-
-    <br>
-    <input type="button" value="Сохранить район" (click)="save()">
-    <br>
-    <input type="button" value="Назад" (click)="back()">
+    <button (click)="back()">
+      <mat-icon title="назад">backspace</mat-icon>
+    </button>
+    <button (click)="save()">
+      <mat-icon title="сохранить">save</mat-icon>
+    </button>
   </form>
 </div>

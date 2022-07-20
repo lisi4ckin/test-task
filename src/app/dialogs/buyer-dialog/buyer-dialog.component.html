@@ -1,1 +1,58 @@
-<p>buyer-dialog works!</p>
+<div *ngIf="pageForm && districts">
+  <form [formGroup]="pageForm" novalidate>
+    <div>
+      <label>ФИО</label>
+      <br>
+      <input type="text" formControlName="buyerName" placeholder="Иван"/>
+    </div>
+    <br>
+    <div>
+      <label>Номер телефона</label>
+      <br>
+      <input type="text" formControlName="buyerPhone" placeholder="Иванов"/>
+    </div>
+    <br>
+    <div>
+      <label>Район</label>
+      <br>
+      <mat-form-field appearance="fill">
+        <select matNativeControl [(ngModel)]="districts" #districtsName>
+          <option *ngFor="let elem of districts" [value]="elem.id">
+            {{elem.districtName}}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+    <br>
+    <div>
+      <label>Желаемый этаж</label>
+      <br>
+      <input type="number" formControlName="buyerFilters" placeholder="9"/>
+    </div>
+    <br>
+    <div>
+      <label>Площадь от, м. кв.</label>
+      <br>
+      <input type="number" formControlName="houseAreaGTE" placeholder="5"/>
+    </div>
+    <br>
+    <div>
+      <label>Площадь до, м. кв.</label>
+      <br>
+      <input type="number" formControlName="houseAreaLTE" placeholder="30"/>
+    </div>
+    <br>
+    <div>
+      <label>максимально допустимая цена, руб</label>
+      <br>
+      <input type="number" formControlName="maxPrice" placeholder="1000000"/>
+    </div>
+    <br>
+    <button (click)="back()">
+      <mat-icon title="назад">backspace</mat-icon>
+    </button>
+    <button (click)="save()">
+      <mat-icon title="сохранить">save</mat-icon>
+    </button>
+  </form>
+</div>

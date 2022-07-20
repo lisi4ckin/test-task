@@ -40,6 +40,7 @@ export class SalesDialogComponent implements OnInit {
     })
     if (this.option) {
       this.service.getOne(this.option).subscribe(data => {
+        console.log("getOne districts in sales", data)
         this.pageForm = this.fb.group({
           id: [data.id],
           sellerName: [data.sellerName],

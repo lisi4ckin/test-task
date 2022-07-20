@@ -1,16 +1,20 @@
 <div *ngIf="pageForm && districts">
   <form [formGroup]="pageForm" novalidate>
-
     <div>
       <label>ФИО</label>
+      <br>
       <input type="text" formControlName="sellerName" placeholder="Иван"/>
     </div>
+    <br>
     <div>
       <label>Номер телефона</label>
+      <br>
       <input type="text" formControlName="phone" placeholder="Иванов"/>
     </div>
+    <br>
     <div>
       <label>Район</label>
+      <br>
       <mat-form-field appearance="fill">
         <select matNativeControl [(ngModel)]="districts" #districtsName>
           <option *ngFor="let elem of districts" [value]="elem.id">
@@ -19,23 +23,36 @@
         </select>
       </mat-form-field>
     </div>
+    <br>
     <div>
       <label>Общее количество этажей в доме</label>
+      <br>
       <input type="number" formControlName="countFloors" placeholder="9"/>
     </div>
+    <br>
     <div>
       <label>Этаж квартиры</label>
+      <br>
       <input type="number" formControlName="floorNumber" placeholder="5"/>
     </div>
+    <br>
     <div>
       <label>Площадь, м. кв.</label>
+      <br>
       <input type="number" formControlName="houseArea" placeholder="30"/>
     </div>
+    <br>
     <div>
       <label>Цена, руб</label>
+      <br>
       <input type="number" formControlName="housePrice" placeholder="1000000"/>
     </div>
-    <input type="button" value="Сохранить анкету" (click)="save()">
-    <input type="button" value="Назад" (click)="back()">
+    <br>
+    <button (click)="back()">
+      <mat-icon title="назад">backspace</mat-icon>
+    </button>
+    <button (click)="save()">
+      <mat-icon title="сохранить">save</mat-icon>
+    </button>
   </form>
 </div>
